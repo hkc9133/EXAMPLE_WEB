@@ -1,0 +1,87 @@
+// import axios from 'axios';
+//
+// import {NextRequest, NextResponse} from "next/server"
+// import {getServerSession} from "next-auth/next";
+// import {authOptions} from "@/lib/nextauth";
+// import {redirect} from "next/navigation";
+// import {cookies} from "next/headers";
+// import {serialize} from "cookie";
+// import {Cookies} from 'react-cookie';
+// import {logger} from "@/lib/logger";
+// // import logger from "pino-http";
+// // const logger = require('pino-http')()
+//
+//
+// // Review if we need this, and why
+// function stripContentEncoding(result: Response) {
+//     const responseHeaders = new Headers(result.headers)
+//     responseHeaders.delete("content-encoding")
+//
+//     // logger.info(result.body, {
+//     //     status: result.status,
+//     //     statusText: result.statusText,
+//     //     headers: responseHeaders,
+//     // });
+//
+//     return new Response(result.body, {
+//         status: result.status,
+//         statusText: result.statusText,
+//         headers: responseHeaders,
+//     })
+// }
+//
+// async function handler(request: NextRequest, res: NextResponse,) {
+//     const {method, body} = request;
+//
+//     console.log("@@@@@@@@@")
+//     console.log( JSON.stringify(body))
+//
+//     const session = await getServerSession(authOptions)
+//
+//     const headers = new Headers(request.headers)
+//
+//     if (session?.access) {
+//         headers.set("Authorization", `Bearer ${session.access}`)
+//     }
+//
+//     let backendUrl = process.env.NEXT_PUBLIC_SERVER_URL
+//
+//     let url = request.nextUrl.href.replace(request.nextUrl.origin, backendUrl)
+//
+//     const axiosResponse = await axios({
+//         method: method,
+//         url: url,
+//         data: JSON.stringify(body),
+//         headers: headers,
+//     });
+//
+//     // return res.status(axiosResponse.status).json(axiosResponse.data);
+//
+//     const responseHeaders = new Headers(axiosResponse.headers)
+//
+//     return new Response(axiosResponse.body, {
+//         status: axiosResponse.status,
+//         statusText: axiosResponse.statusText,
+//         headers: responseHeaders,
+//     })
+//
+//
+//     // let result = await fetch(url, { method,headers, body})
+//     // console.log(result)
+//     //
+//     // // const result = await axios('/api/data');
+//     // const result = await axios({
+//     //     method: method,
+//     //     url: url,
+//     //     data:body,
+//     //     config: {
+//     //         headers
+//     //     },
+//     // })
+//     // return result;
+//     // return stripContentEncoding(result)
+// }
+//
+// export const dynamic = "force-dynamic"
+//
+// export {handler as GET, handler as POST, handler as PUT, handler as DELETE}

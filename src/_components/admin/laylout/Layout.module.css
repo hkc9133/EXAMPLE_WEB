@@ -1,0 +1,44 @@
+/* styles/Layout.module.css */
+.container {
+    margin-top:64px;
+    display: flex;
+}
+
+.appBar {
+    transition: margin 0.3s ease-out, width 0.3s ease-out;
+}
+
+.appBarShift {
+    width: calc(100% - 240px);
+    margin-left: 300px;
+    padding-left: 300px;
+    transition: margin 0.3s ease-out, width 0.3s ease-out;
+}
+
+.drawer {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.drawerPaper {
+    width: 300px;
+}
+
+.drawerHeader {
+    display: flex;
+    align-items: center;
+    padding: 8px 8px;
+    min-height: 64px;
+    justify-content: flex-end;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    transition: margin 0.3s ease-out;
+    margin-left: -240px;
+}
+
+.contentShift {
+    margin-left: 0;
+}
