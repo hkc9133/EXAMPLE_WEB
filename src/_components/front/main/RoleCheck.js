@@ -1,18 +1,28 @@
 'use client'
-import React from 'react';
+import React, {useEffect} from 'react';
 import authService from "@/service/auth";
-import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
+import {useAuthStore} from "../../../_store/useAuthStore";
+import {useStore} from "../../../_store/useState";
+import {useModalStore} from "../../../_store/useModalStore";
+import {useLogout} from "@/hook/auth/useAuthMutations";
+import {useRouter} from "next/navigation";
 
 const RoleCheck = () => {
+    const router = useRouter()
+    const isLogin = useStore(useAuthStore, (state) => {
+        return state.isLogin;
+    });
+    const {onConfirm, onAlert} = useModalStore()
+    const logoutMutation = useLogout();
 
-    const session = useSession();
 
     const handleTTTCheck = () =>{
         authService.tttCheck().then((res) =>{
             console.log(res)
         })
     }
+
     const handleTTTCheck22 = () =>{
         authService.tttCheck2().then((res) =>{
             console.log("ffffffffffff")
@@ -36,10 +46,20 @@ const RoleCheck = () => {
     }
 
     const handleLogout = () =>{
-        signOut({
-            callbackUrl: `/auth/login`,
-        });
+        logoutMutation.mutate({},{
+            onSuccess:() =>{
+                router.push("/")
+            },
+            onError:() =>{
+                router.push("/")
+            },
+        })
     }
+
+    useEffect(() => {
+        // onAlert({message:'2323'})
+        onConfirm({message:'2323'})
+    }, []);
 
     return (
         <div>
@@ -49,9 +69,10 @@ const RoleCheck = () => {
             <button type={"button"} onClick={handleRefresh}>refresh</button>
             <br/>
             <Link href={"/admin"}>admin</Link>
+            <Link href={"/private"}>aaaaaaaaaaaaaaaaaa</Link>
             <br/>
             <br/>
-            {session.status === "authenticated" ?  <button type={"button"} onClick={handleLogout}>logout</button> : <Link href={"/auth/login"}>login</Link>}
+            {isLogin ?  <button onClick={handleLogout}>logout</button> : <Link href={"/auth/login"}>login</Link>}
 
         </div>
     );

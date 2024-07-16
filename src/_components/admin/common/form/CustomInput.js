@@ -13,6 +13,7 @@ const CustomInput = ({name, rules, control,variant="standard", ...props}) => {
     });
     return (
         <TextField
+            error={error}
             {...field}
             // InputProps={{
             //     sx: {

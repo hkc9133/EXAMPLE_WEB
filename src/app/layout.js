@@ -1,6 +1,12 @@
 
 import "./globals.css";
+import "public/ck-editor.css";
 import Providers from "../_provider/providers";
+import Alert from "@/components/front/common/modal/Alert";
+import Confirm from "@/components/front/common/modal/Confirm";
+import 'dayjs/locale/ko'; // load on demand
+import dayjs from 'dayjs';
+dayjs.locale('ko'); // use Spanish locale globally
 
 export const metadata = {
     title: "Create Next App",
@@ -13,6 +19,8 @@ export default function RootLayout({children}) {
         <body>
         <Providers>
             {children}
+            <Alert />
+            <Confirm />
         </Providers>
         </body>
         </html>

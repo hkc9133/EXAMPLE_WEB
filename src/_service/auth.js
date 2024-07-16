@@ -3,9 +3,13 @@ import client from "@/lib/client";
 const baseUrl = `/user`;
 
 const authService = {
-    login: async data => {
-        const result = await client.post(`${baseUrl}/login`, data);
-        return result;
+    login: async (loginInfo) => {
+        const {data} = await client.post(`${baseUrl}/login`, loginInfo);
+        return data;
+    },
+    logout: async () => {
+        const {data} = await client.post(`${baseUrl}/logout`);
+        return data;
     },
     refresh: async (token) => {
         const config = {
@@ -34,6 +38,10 @@ const authService = {
     },
     join: async data => {
         const result = await client.post(`${baseUrl}/join`, data);
+        return result;
+    },
+    socialJoin: async data => {
+        const result = await client.post(`${baseUrl}/social/join`, data);
         return result;
     },
     updateUserInfo: async data => {

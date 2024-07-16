@@ -11,7 +11,7 @@ const NavigationLink = ({item,isSuv}) => {
     const pathname = usePathname()
     const [isActive, setIsActive] = useState(false)
     useEffect(() => {
-        console.log(pathname)
+        // console.log(pathname)
         setIsActive(pathname === item.path)
         // handleURLQueries(router,item.path)
     }, [pathname]);
@@ -33,12 +33,13 @@ const NavigationLink = ({item,isSuv}) => {
                                 // '&:hover': {
                                 //     backgroundColor: 'rgba(220, 0, 50, 0.1)'
                                 // },
-                                // '&.Mui-selected': {
-                                //     backgroundColor: 'rgba(220, 0, 50, 0.5)'
-                                // },
-                                // '&.Mui-selected:hover': {
-                                //     backgroundColor: 'rgba(220, 0, 50, 0.5)'
-                                // }
+                                '&.Mui-selected': {
+                                    color:'#fff',
+                                    backgroundColor: '#1976d2'
+                                },
+                                '&.Mui-selected:hover': {
+                                    backgroundColor: '#1976d2'
+                                }
                             }}
             >
                 <ListItemIcon>

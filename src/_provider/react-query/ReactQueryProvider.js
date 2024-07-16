@@ -10,8 +10,8 @@ const ReactQueryProvider = ({children}) => {
             new QueryClient({
                 defaultOptions: {
                     queries: {
-                        structuralSharing: false,
-                        refetchOnWindowFocus: false,
+                        structuralSharing: true,
+                        refetchOnWindowFocus: true,
                         staleTime: 60 * 1000,
                     },
                 },

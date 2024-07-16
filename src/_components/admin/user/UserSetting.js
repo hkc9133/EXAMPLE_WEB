@@ -1,3 +1,4 @@
+'use client'
 import React, {useEffect} from 'react';
 import {useForm} from "react-hook-form";
 import {Button, Grid, Stack} from "@mui/material";
@@ -19,7 +20,7 @@ const UserSetting = ({onSubmit}) => {
 
     return (
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <Grid container xs={12} sx={{'& .MuiTextField-root': {m: 1},}} spacing={3} >
+            <Grid container xs={12} sx={{'& .MuiTextField-root': {m: 0},}} spacing={1} >
                 <Grid item>
                     <CustomInput sx={{ width: '25ch' }} control={control} name="field" label="Helper text" helperText="Some important text"/>
                     <CustomInput sx={{ width: '25ch' }} control={control} name="field" label="Helper text" helperText="Some important text"/>

@@ -7,37 +7,40 @@ import createCache from '@emotion/cache';
 import {createTheme, GlobalStyles, ThemeProvider} from "@mui/material";
 import {CacheProvider} from "@emotion/react";
 import {useServerInsertedHTML} from "next/navigation";
-
+import {LocalizationProvider} from '@mui/x-date-pickers';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs'
+import {koKR} from '@mui/x-date-pickers/locales';
+import 'dayjs/locale/ko';
 
 const LinkBehaviour = forwardRef(function LinkBehaviour(props, ref) {
     return <NextLink ref={ref} {...props} />;
 });
 
 const theme = createTheme({
-    palette: {
-        // primary: lime,
-        // secondary: purple,
-    },
-    components: {
-        MuiLink: {
-            defaultProps: {
-                component: LinkBehaviour
-            }
+        palette: {
+            // primary: lime,
+            // secondary: purple,
         },
-        MuiButtonBase: {
-            defaultProps: {
-                LinkComponent: LinkBehaviour
-            }
-        }
-    },
-
-});
+        components: {
+            MuiLink: {
+                defaultProps: {
+                    component: LinkBehaviour
+                }
+            },
+            MuiButtonBase: {
+                defaultProps: {
+                    LinkComponent: LinkBehaviour
+                }
+            },
+        },
+    }, koKR
+);
 
 const MuiThemeProvider = ({children}) => {
 
     const options = {key: 'mui'}
 
-    const [{ cache, flush }] = React.useState(() => {
+    const [{cache, flush}] = React.useState(() => {
         const cache = createCache(options);
         cache.compat = true;
         const prevInsert = cache.insert;
@@ -54,7 +57,7 @@ const MuiThemeProvider = ({children}) => {
             inserted = [];
             return prevInserted;
         };
-        return { cache, flush };
+        return {cache, flush};
     });
 
     useServerInsertedHTML(() => {
@@ -80,8 +83,10 @@ const MuiThemeProvider = ({children}) => {
     return (
         <CacheProvider value={cache}>
             <ThemeProvider theme={theme}>
-                <CssBaseline />
-                {children}
+                <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'ko'}>
+                    <CssBaseline/>
+                    {children}
+                </LocalizationProvider>
             </ThemeProvider>
         </CacheProvider>
     );

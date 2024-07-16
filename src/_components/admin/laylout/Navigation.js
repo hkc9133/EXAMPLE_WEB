@@ -19,17 +19,44 @@ const naviList = () => {
             children: []
         },
         {
-            title: 'Board',
+            title: '게시판',
+            icon: PersonIcon,
+            children: [
+                {
+                    title: '게시판 관리',
+                    icon: PersonIcon,
+                    path: `${adminBase}/board`,
+                },
+                {
+                    title: '공지사항',
+                    icon: PersonIcon,
+                    path: `${adminBase}/board/post/notice`,
+                },
+                {
+                    title: '자료실',
+                    icon: PersonIcon,
+                    path: `${adminBase}/board/post/data`,
+                },
+            ]
+        },
+        {
+            title: '카테고리',
+            icon: PersonIcon,
+            path: `${adminBase}/category`,
+            children: []
+        },
+        {
+            title: '기타',
             icon: PersonIcon,
             children: [{
-                title: 'Notice',
+                title: '팝업 관리',
                 icon: PersonIcon,
-                path: `${adminBase}/board/notice`,
+                path: `${adminBase}/popup`,
             },
                 {
-                    title: 'Data',
+                    title: '배너 관리',
                     icon: PersonIcon,
-                    path: `${adminBase}/board/data`,
+                    path: `${adminBase}/banner`,
                 },
             ]
         }
@@ -46,7 +73,7 @@ const Navigation = () => {
 
     return (
         <List
-            sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper',padding:0}}
+            sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper', padding: 0}}
             component="nav"
             aria-labelledby="nested-list-subheader"
         >

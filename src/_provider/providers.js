@@ -1,16 +1,16 @@
 'use client'
 import React from 'react';
 import ReactQueryProvider from "@/provider/react-query/ReactQueryProvider";
-import {SessionProvider} from "next-auth/react";
+import {CookiesProvider} from "react-cookie";
 
 const Providers = ({children}) => {
     return (
         <>
-            <SessionProvider>
+            <CookiesProvider>
                 <ReactQueryProvider>
                     {children}
                 </ReactQueryProvider>
-            </SessionProvider>
+            </CookiesProvider>
         </>
     );
 };

@@ -1,0 +1,34 @@
+/* To center the spinner*/
+.category {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    //padding: 0px 20px;
+    margin-bottom: 5px;
+    //height: 30px;
+    //border-bottom: 1px solid gray;
+    cursor: pointer;
+    &.selected{
+        color:#d32f2f;
+    }
+    &:hover{
+        color:#d32f2f;
+    }
+    .folder{
+        flex-basis: 7%;
+        margin: auto 0;
+    }
+    .item{
+        flex-basis: 65%;
+        text-align: left;
+        margin: auto 0;
+        &.child{
+            padding-left: 8%;
+        }
+    }
+    .arrow{
+        text-align: right;
+        flex-basis: 25%;
+        margin: auto 0;
+    }
+}

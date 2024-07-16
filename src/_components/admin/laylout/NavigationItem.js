@@ -20,9 +20,7 @@ const NavigationItem = ({item}) => {
         setOpen(!open)
     }
     useEffect(() => {
-        console.log(pathname)
-        // setIsActive()
-        // handleURLQueries(router,item.path)
+
     }, [pathname]);
 
     const handleURLQueries = (router, path) => {
