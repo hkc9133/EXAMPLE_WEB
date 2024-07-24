@@ -3,7 +3,7 @@ import {useController} from "react-hook-form";
 import {MenuItem, Select, TextField} from "@mui/material";
 
 
-const CustomSelect = ({name, rules, control, list, variant = "outlined", sx, ...props}) => {
+const CustomSelect = ({name, rules, control, list,nullAllow=true, variant = "outlined", sx, ...props}) => {
     const {
         field,
         fieldState: {isDirty, isTouched, error},
@@ -37,9 +37,11 @@ const CustomSelect = ({name, rules, control, list, variant = "outlined", sx, ...
             }}
             {...props}
         >
-            <MenuItem value="">
-                선택 안 함
-            </MenuItem>
+            {nullAllow && (
+                <MenuItem value="">
+                    선택 안 함
+                </MenuItem>
+            )}
             {list.map((item) => (
                 <MenuItem key={item.value} value={item.value}>{item.label}</MenuItem>
             ))}

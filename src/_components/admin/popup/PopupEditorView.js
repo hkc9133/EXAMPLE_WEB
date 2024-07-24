@@ -9,7 +9,7 @@ import CustomDateTimePicker from "@/components/admin/common/form/CustomDateTimeP
 import dynamic from "next/dynamic";
 import Loader from "@/components/common/loader/Loader";
 import {useRouter, useSearchParams} from 'next/navigation'
-import {useModalStore} from "../../../_store/useModalStore";
+import {useModalStore} from "@/store/useModalStore";
 import {useAddPopup, useDeletePopup, useEditPopup, usePopupQuery} from "@/hook/admin/usePopupQuery";
 import dayjs from "dayjs";
 import parse from "html-react-parser";
@@ -66,7 +66,7 @@ const PopupEditorView = ({popupId}) => {
 
     const router = useRouter();
     const {onConfirm, onAlert} = useModalStore()
-    const [type, setType] = useState({type: popupId ? "edit" : 'write', btnText: popupId ? "수정" : '추가'})
+    const [type, setType] = useState({type: popupId ? "EDIT" : 'WRITE', btnText: popupId ? "수정" : '추가'})
 
     const queryClient = useQueryClient()
     const {data, isError, isLoading, isSuccess} = usePopupQuery(popupId)
@@ -85,7 +85,7 @@ const PopupEditorView = ({popupId}) => {
 
 
     const confirmSubmit = (data) => {
-        const action = type.type === 'edit' ? onEdit : onAdd
+        const action = type.type === 'EDIT' ? onEdit : onAdd
 
         const formData = {
             ...data,
@@ -124,9 +124,9 @@ const PopupEditorView = ({popupId}) => {
     }
 
     const onDelete = () => {
-        deletePopup.mutate(popupId,{
+        deletePopup.mutate([popupId],{
             onSuccess: () => {
-                invalidate()
+                queryClient.invalidateQueries({ queryKey: ['admin_popup_list'] })
                 onAlert({message:`삭제가 완료되었습니다`,callback:() =>router.back()})
             },
             onError: (error) => {
@@ -192,15 +192,17 @@ const PopupEditorView = ({popupId}) => {
                     />
                 </Grid>
                 <Grid item xs={6} sx={{ml: 1, mt: 1}}>
-                    <Editor data={getValues("content")} onChange={(e) => {
-                        setValue("content", e)
-                    }} position={"left"}/>
+                    {(type.type == "WRITE" || (type.type == "EDIT" && isSuccess)) && (
+                        <Editor data={getValues("content")} onChange={(e) => {
+                            setValue("content", e)
+                        }} position={"left"}/>
+                    )}
                 </Grid>
                 <Grid item xs={12} sx={{ml: 1, mt: 5}}>
                     <Stack spacing={2} direction="row">
                         <Button type={"submit"} variant="contained">{type.btnText}</Button>
                         <Button type={"button"} variant="contained" color="warning" onClick={() =>{router.back()}}>뒤로가기</Button>
-                        {type.type == 'edit' && <Button type={"button"} variant="contained" color={"error"} onClick={confirmDelete}>삭제</Button>}
+                        {type.type == 'EDIT' && <Button type={"button"} variant="contained" color={"error"} onClick={confirmDelete}>삭제</Button>}
                     </Stack>
                 </Grid>
             </Grid>

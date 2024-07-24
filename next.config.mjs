@@ -23,7 +23,13 @@ const nextConfig = {
         serverComponentsExternalPackages: ["pino", "pino-pretty"],
     },
     async redirects() {
-        return [];
+        return [
+            {
+                source: process.env.NEXT_PUBLIC_ADMIN_BASE,
+                destination: `${process.env.NEXT_PUBLIC_ADMIN_BASE}/dashboard`,
+                permanent: true,
+            },
+        ];
     },
 };
 

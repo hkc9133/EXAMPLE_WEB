@@ -83,7 +83,7 @@ import translations from 'ckeditor5/translations/ko.js';
 import 'ckeditor5/ckeditor5.css';
 
 
-const Editor = ({onChange,data = "",position=""}) => {
+const Editor = ({onChange,data = "",position="",division="POST_CONTENT_IMG"}) => {
     const editorContainerRef = useRef(null);
     const editorRef = useRef(null);
     const [isLayoutReady, setIsLayoutReady] = useState(false);
@@ -378,7 +378,7 @@ const Editor = ({onChange,data = "",position=""}) => {
             contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
         },
         simpleUpload: {
-            uploadUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/resource/board/img&responseType=json`,
+            uploadUrl: `${process.env.NEXT_PUBLIC_SERVER_URL}/resource/${division}/img&responseType=json`,
             withCredentials: true,
         },
         translations: [translations],

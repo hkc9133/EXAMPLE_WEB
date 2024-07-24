@@ -6,9 +6,9 @@ import {ErrorMessage} from "@hookform/error-message";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 import authService from "@/service/auth";
-import {useAuthStore} from "../../../_store/useAuthStore";
+import {useAuthStore} from "@/store/useAuthStore";
 import {useLogin} from "@/hook/auth/useAuthMutations";
-import {useModalStore} from "../../../_store/useModalStore";
+import {useModalStore} from "@/store/useModalStore";
 
 const LoginForm = () => {
     const router = useRouter();

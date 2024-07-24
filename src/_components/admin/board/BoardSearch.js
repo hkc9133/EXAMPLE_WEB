@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import {useForm} from "react-hook-form";
-import qs from "querystring";
+import qs from "query-string";
 import CustomDateTimePicker from "@/components/admin/common/form/CustomDateTimePicker";
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import dayjs from "dayjs";

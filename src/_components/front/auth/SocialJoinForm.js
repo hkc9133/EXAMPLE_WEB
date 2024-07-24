@@ -3,7 +3,7 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import {emailVal} from "@/constants/validation";
 import authService from "@/service/auth";
-import {useModalStore} from "../../../_store/useModalStore";
+import {useModalStore} from "@/store/useModalStore";
 import {useRouter} from "next/navigation";
 
 const SocialJoinForm = ({provider}) => {

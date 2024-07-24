@@ -4,7 +4,7 @@ import CategoryList from "@/components/admin/category/list/CategoryList";
 import CategoryEdit from "@/components/admin/category/edit/CategoryEdit";
 import {Button, Grid} from "@mui/material";
 import {useCategoryAllQuery, useEditCategory, useMoveCategory} from "@/hook/admin/useCategoryQuery";
-import {useModalStore} from "../../../_store/useModalStore";
+import {useModalStore} from "@/store/useModalStore";
 import {useQueryClient} from "@tanstack/react-query";
 
 const CategoryManage = () => {

@@ -5,13 +5,18 @@ import '@fontsource/roboto/700.css';
 import MuiThemeProvider from "../../_provider/mui/MuiThemeProvider";
 import Layout from "@/components/admin/laylout/Layout";
 import AuthProvider from "@/provider/auth/AuthProvider";
-import Hydrations from "../../_store/Hydrations";
+import Hydrations from "@/store/Hydrations";
 
+export const metadata = {
+    title: {
+        template: `%s | ${process.env.META_TITLE}`,
+        default: `관리자`,
+    },
+};
 
 export default function RootLayout({children}) {
     return (
         <MuiThemeProvider>
-            <Hydrations/>
             <AuthProvider requireAdmin={true}>
                 <Layout>
                     {children}

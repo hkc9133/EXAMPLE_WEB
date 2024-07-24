@@ -26,6 +26,7 @@
       "@/public/*": ["public/*"],
       "@/atom/*": ["src/_atom/*"],
       "@/hook/*": ["src/_hook/*"],
+      "@/store/*": ["src/_store/*"],
       "@/components/*": ["src/_components/*"],
       "@/provider/*": ["src/_provider/*"],
       "@/service/*": ["src/_service/*"],

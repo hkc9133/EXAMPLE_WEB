@@ -1,11 +1,11 @@
 'use client'
 import React, {useEffect} from 'react';
-import {useStore} from "../../_store/useState";
-import {useAuthStore} from "../../_store/useAuthStore";
+import {useStore} from "@/store/useState";
+import {useAuthStore} from "@/store/useAuthStore";
 import {useRouter} from "next/navigation";
 import PageLoader from "@/components/common/loader/PageLoader";
 
-const AuthProvider = ({children,requireAdmin = false}) => {
+const AuthProvider = ({children, requireAdmin = false}) => {
 
     const router = useRouter();
     const isLogin = useStore(useAuthStore, (state) => {
@@ -17,17 +17,19 @@ const AuthProvider = ({children,requireAdmin = false}) => {
 
     useEffect(() => {
 
-        console.log(isLogin,isAdmin)
-        if(requireAdmin){
-            if((isLogin != undefined && isAdmin != undefined && (!isLogin || !isAdmin))){
-                router.push("/")
-            }
-        }else{
-            if((isLogin != undefined && !isLogin)){
-                router.push("/")
+        if (isLogin != undefined && isAdmin != undefined) {
+            console.log(isLogin, isAdmin)
+            if (requireAdmin) {
+                if (!isLogin || !isAdmin) {
+                    router.push("/")
+                }
+            } else {
+                if (!isLogin) {
+                    router.push("/")
+                }
             }
         }
-    }, [isLogin,isAdmin]);
+    }, [isLogin, isAdmin]);
 
 
     if (!isLogin || !isAdmin) {

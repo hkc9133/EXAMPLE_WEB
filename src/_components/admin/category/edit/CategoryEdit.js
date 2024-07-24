@@ -5,7 +5,7 @@ import {Button, Card, Grid, Stack} from "@mui/material";
 import {useForm} from "react-hook-form";
 import CustomInput from "@/components/admin/common/form/CustomInput";
 import {useRouter} from "next/navigation";
-import {useModalStore} from "../../../../_store/useModalStore";
+import {useModalStore} from "@/store/useModalStore";
 import {useAddPopup, useDeletePopup, useEditPopup} from "@/hook/admin/usePopupQuery";
 import {useAddCategory, useDeleteCategory, useEditCategory} from "@/hook/admin/useCategoryQuery";
 

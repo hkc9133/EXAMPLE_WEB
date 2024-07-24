@@ -1,118 +1,107 @@
 import * as React from 'react';
 import List from '@mui/material/List';
 import PersonIcon from '@mui/icons-material/Person';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import NavigationItem from "@/components/admin/laylout/NavigationItem";
+import {useAdminInitStore} from "@/store/useAdminInitStore";
+import {useEffect} from "react";
+import {useStore} from "@/store/useState";
+import ListIcon from '@mui/icons-material/List';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import SettingsIcon from '@mui/icons-material/Settings';
+import CategoryIcon from '@mui/icons-material/Category';
+import MoreIcon from '@mui/icons-material/More';
+const adminBase = process.env.NEXT_PUBLIC_ADMIN_BASE
 
-const adminBase = "/admin"
-const naviList = () => {
-    return [
-        {
-            title: 'Dashboard',
-            icon: PersonIcon,
-            path: `${adminBase}/dashboard`,
-            children: []
-        },
-        {
-            title: 'User',
-            icon: PersonIcon,
-            path: `${adminBase}/user`,
-            children: []
-        },
-        {
-            title: '게시판',
-            icon: PersonIcon,
-            children: [
-                {
-                    title: '게시판 관리',
-                    icon: PersonIcon,
-                    path: `${adminBase}/board`,
-                },
-                {
-                    title: '공지사항',
-                    icon: PersonIcon,
-                    path: `${adminBase}/board/post/notice`,
-                },
-                {
-                    title: '자료실',
-                    icon: PersonIcon,
-                    path: `${adminBase}/board/post/data`,
-                },
-            ]
-        },
-        {
-            title: '카테고리',
-            icon: PersonIcon,
-            path: `${adminBase}/category`,
-            children: []
-        },
-        {
-            title: '기타',
-            icon: PersonIcon,
-            children: [{
-                title: '팝업 관리',
-                icon: PersonIcon,
-                path: `${adminBase}/popup`,
-            },
-                {
-                    title: '배너 관리',
-                    icon: PersonIcon,
-                    path: `${adminBase}/banner`,
-                },
-            ]
-        }
-    ]
-
-}
 
 const Navigation = () => {
-    const [open, setOpen] = React.useState(true);
 
-    const handleClick = () => {
-        setOpen(!open);
-    };
+    const initData = useStore(useAdminInitStore, (state) => {
+        return state.initData;
+    });
 
+    const [menuList, setMenuList] = React.useState([]);
+
+    useEffect(() => {
+        if (!initData) {
+            return;
+        }else{
+            const list = [
+                {
+                    title: '대시보드',
+                    id: 'dashboard',
+                    icon: DashboardIcon,
+                    path: `${adminBase}/dashboard`,
+                    children: []
+                },
+                {
+                    title: '사용자',
+                    id: 'user',
+                    icon: PersonIcon,
+                    path: `${adminBase}/user`,
+                    children: []
+                },
+                {
+                    title: '게시판',
+                    id: 'board',
+                    icon: DynamicFeedIcon,
+                    children: [
+                        {
+                            title: '게시판 관리',
+                            icon: SettingsIcon,
+                            path: `${adminBase}/board`,
+                        },
+                        ...initData.board.map((board) => (
+                            {
+                                title: board.boardKrName,
+                                icon: ListIcon,
+                                path: `${adminBase}/board/${board.boardEnName}`,
+                            }
+                        )),
+                    ]
+                },
+                {
+                    title: '카테고리',
+                    id: 'category',
+                    icon: CategoryIcon,
+                    path: `${adminBase}/category`,
+                    children: []
+                },
+                {
+                    title: '기타',
+                    id: 'etc',
+                    icon: MoreIcon,
+                    children: [{
+                        title: '팝업',
+                        icon: ListIcon,
+                        path: `${adminBase}/popup`,
+                    },
+                        {
+                            title: '배너',
+                            icon: ListIcon,
+                            path: `${adminBase}/banner`,
+                        },
+                    ]
+                },
+                {
+                    title: '사이트 관리',
+                    id: 'site_setting',
+                    icon: SettingsIcon,
+                    path: `${adminBase}/site_setting`,
+                    children: []
+                },
+            ]
+            setMenuList(list)
+        }
+
+    }, [initData]);
     return (
         <List
             sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper', padding: 0}}
             component="nav"
             aria-labelledby="nested-list-subheader"
         >
-            {/*<ListItemButton component={NextLink} href="/admin/dashboard">*/}
-            {/*    <ListItemIcon>*/}
-            {/*        <PersonIcon/>*/}
-            {/*    </ListItemIcon>*/}
-            {/*    <ListItemText primary="대시보드"/>*/}
-            {/*</ListItemButton>*/}
-            {/*<ListItemButton component={NextLink} href="/admin/user">*/}
-            {/*    <ListItemIcon>*/}
-            {/*        <DraftsIcon/>*/}
-            {/*    </ListItemIcon>*/}
-            {/*    <ListItemText primary="사용자"/>*/}
-            {/*</ListItemButton>*/}
-            {/*<ListItemButton onClick={handleClick}>*/}
-            {/*    <ListItemIcon>*/}
-            {/*        <InboxIcon/>*/}
-            {/*    </ListItemIcon>*/}
-            {/*    <ListItemText primary="게시판"/>*/}
-            {/*    {open ? <ExpandLess/> : <ExpandMore/>}*/}
-            {/*</ListItemButton>*/}
-            {/*<Collapse in={open} timeout="auto" unmountOnExit>*/}
-            {/*    <List component="div" disablePadding>*/}
-            {/*        <ListItemButton sx={{pl: 4}} component={NextLink} href="/admin/board/notice">*/}
-            {/*            <ListItemIcon>*/}
-            {/*                <StarBorder/>*/}
-            {/*            </ListItemIcon>*/}
-            {/*            <ListItemText primary="공지사항"/>*/}
-            {/*        </ListItemButton>*/}
-            {/*        <ListItemButton sx={{pl: 4}} component={NextLink} href="/admin/board/notice">*/}
-            {/*            <ListItemIcon>*/}
-            {/*                <StarBorder/>*/}
-            {/*            </ListItemIcon>*/}
-            {/*            <ListItemText primary="공지사항2"/>*/}
-            {/*        </ListItemButton>*/}
-            {/*    </List>*/}
-            {/*</Collapse>*/}
-            {naviList().map((navi) => (
+            {menuList.map((navi) => (
                 <NavigationItem key={navi.title} item={navi}/>
             ))}
         </List>

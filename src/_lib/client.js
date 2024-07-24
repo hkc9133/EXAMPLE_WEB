@@ -71,11 +71,14 @@ client.interceptors.response.use(
                 error.config.headers['Authorization'] = `Bearer ${newAccessToken}`;
                 return client(error.config);
             } catch (refreshError) {
-                window.location.href = `/logout`;
+                if(!isServer){
+                    window.location.href = `/logout`;
+                }
             }
         } else if (response.status === 403) {
-            console.log("40333333333")
-            window.location.href = `/${error.response.status}`;
+            if(!isServer){
+                window.location.href = `/${error.response.status}`;
+            }
         } else {
             return Promise.reject(error.response);
         }

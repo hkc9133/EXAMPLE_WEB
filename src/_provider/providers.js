@@ -2,13 +2,16 @@
 import React from 'react';
 import ReactQueryProvider from "@/provider/react-query/ReactQueryProvider";
 import {CookiesProvider} from "react-cookie";
+import UserInfoCollectionProvider from "@/provider/collection/UserInfoCollectionProvider";
 
 const Providers = ({children}) => {
     return (
         <>
             <CookiesProvider>
                 <ReactQueryProvider>
-                    {children}
+                    <UserInfoCollectionProvider>
+                        {children}
+                    </UserInfoCollectionProvider>
                 </ReactQueryProvider>
             </CookiesProvider>
         </>

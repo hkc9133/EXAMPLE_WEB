@@ -25,7 +25,7 @@ const BoardListView = () => {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const {replace} = useRouter();
-    const [param, setParam] = useState(null);
+    
 
     const {data, isError, isLoading, isSuccess} = useBoardListQuery(searchParams.toString())
 

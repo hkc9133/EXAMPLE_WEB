@@ -1,13 +1,6 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import categoryService from "@/service/admin/category";
 
-const invalidate = () =>{
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const queryClient = useQueryClient()
-    queryClient.invalidateQueries({ queryKey: ['admin_category_all'] })
-
-}
-
 export const useCategoryAllQuery = () => {
 
     const {
@@ -18,6 +11,37 @@ export const useCategoryAllQuery = () => {
     } = useQuery({
         queryKey:["admin_category_all"],
         queryFn: () => {return categoryService.getCategoryAll()},
+    });
+
+    return {isLoading, isError, data, isSuccess};
+};
+
+export const useCategoryListQuery = () => {
+
+    const {
+        isLoading,
+        isError,
+        data,
+        isSuccess,
+    } = useQuery({
+        queryKey:["admin_category_list"],
+        queryFn: () => {return categoryService.getCategoryList()},
+    });
+
+    return {isLoading, isError, data, isSuccess};
+};
+
+export const useCategoryItemListQuery = (param) => {
+
+    const {
+        isLoading,
+        isError,
+        data,
+        isSuccess,
+    } = useQuery({
+        queryKey:["admin_category_item_list",param],
+        queryFn: () => {return categoryService.getCategoryItemList(param)},
+        enabled:!!param
     });
 
     return {isLoading, isError, data, isSuccess};

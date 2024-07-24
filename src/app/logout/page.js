@@ -1,7 +1,6 @@
 'use client'
 import React, {useEffect} from 'react';
 import axios from "axios";
-import {useAuthStore} from "../../_store/useAuthStore";
 import {useRouter} from "next/navigation";
 import {useLogin, useLogout} from "@/hook/auth/useAuthMutations";
 

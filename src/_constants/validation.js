@@ -3,4 +3,4 @@ export const userIdVal = /^[A-Za-z]{1}[a-z0-9]{5,11}$/;
 export const userPasswordVal = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
 export const emailVal = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 export const onlyNumber = /^\d+$/;
-export const url = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+export const urlVal = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;

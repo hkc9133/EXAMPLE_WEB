@@ -1,4 +1,4 @@
-import {useAuthStore} from "../../_store/useAuthStore";
+import {useAuthStore} from "@/store/useAuthStore";
 import {useMutation} from "@tanstack/react-query";
 import authService from "@/service/auth";
 import {useRouter} from "next/navigation";

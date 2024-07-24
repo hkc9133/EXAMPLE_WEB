@@ -1,6 +1,6 @@
 'use client'
 import React, {useEffect} from 'react';
-import {useAuthStore} from "../../../_store/useAuthStore";
+import {useAuthStore} from "@/store/useAuthStore";
 import {useRouter} from "next/navigation";
 
 const AuthCheck = (data) => {

@@ -1,5 +1,5 @@
 import client from "@/lib/client";
-import qs from "querystring";
+import qs from "query-string";
 
 const baseUrl = `/admin/category`;
 
@@ -9,9 +9,13 @@ const categoryService = {
         const {data} = await client.get(`${baseUrl}/all`);
         return data;
     },
-    getCategoryList: async (params) => {
-        const queryString = qs.stringify(params);
-        const {data} = await client.get(`${baseUrl}/list?${params}`);
+    getCategoryList: async () => {
+        const {data} = await client.get(`${baseUrl}/list`);
+        return data;
+    },
+    getCategoryItemList: async (param) => {
+        const queryString = qs.stringify(param);
+        const {data} = await client.get(`${baseUrl}/item/list?${queryString}`);
         return data;
     },
     addCategory: async (category) => {

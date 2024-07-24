@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import {useModalStore} from "../../../../_store/useModalStore";
+import {useModalStore} from "@/store/useModalStore";
 import style from "@/components/front/common/modal/modal.module.scss";
 
 const Confirm = () => {

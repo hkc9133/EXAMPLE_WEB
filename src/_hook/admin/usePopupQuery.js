@@ -80,8 +80,8 @@ export const useEditPopup = () => {
 export const useDeletePopup = () => {
 
     return useMutation({
-        mutationFn: (popupId) =>{
-            return popupService.deletePopup(popupId)
+        mutationFn: (idList) =>{
+            return popupService.deletePopup(idList)
         },
         onSuccess: (res) => {
             return res;

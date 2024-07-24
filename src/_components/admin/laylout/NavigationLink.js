@@ -12,7 +12,7 @@ const NavigationLink = ({item,isSuv}) => {
     const [isActive, setIsActive] = useState(false)
     useEffect(() => {
         // console.log(pathname)
-        setIsActive(pathname === item.path)
+        setIsActive(pathname === item.path || pathname === item.path+"/write")
         // handleURLQueries(router,item.path)
     }, [pathname]);
 

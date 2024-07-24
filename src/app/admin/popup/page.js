@@ -6,7 +6,7 @@ import PopupListView from "@/components/admin/popup/PopupListView";
 import PopupSearch from "@/components/admin/popup/PopupSearch";
 import PopupListViewButtonGroup from "@/components/admin/popup/PopupListViewButtonGroup";
 
-const Page = ({searchParams,params}) => {
+const Page = () => {
 
     return (
         <PageContainer>
@@ -15,8 +15,6 @@ const Page = ({searchParams,params}) => {
                 <Card sx={{
                     p:5
                 }}>
-                    <PopupSearch/>
-                    <PopupListViewButtonGroup/>
                     <PopupListView/>
                 </Card>
             </Grid>

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import {useModalStore} from "../../../../_store/useModalStore";
+import {useModalStore} from "@/store/useModalStore";
 import style from "./modal.module.scss";
 
 const Alert = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import {useController} from "react-hook-form";
 import {TextField} from "@mui/material";
 
-const CustomInput = ({name, rules, control,variant="standard", ...props}) => {
+const CustomInput = ({name, rules, control,helperText,variant="standard", ...props}) => {
     const {
         field,
         fieldState: {isDirty, isTouched, error},
@@ -14,6 +14,7 @@ const CustomInput = ({name, rules, control,variant="standard", ...props}) => {
     return (
         <TextField
             error={error}
+            helperText={error?.message ?  error?.message : helperText}
             {...field}
             // InputProps={{
             //     sx: {

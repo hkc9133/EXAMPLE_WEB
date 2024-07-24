@@ -39,8 +39,8 @@ const NavigationItem = ({item}) => {
                 :
                 <>
                     <ListItemButton onClick={handleClick}>
-                        <ListItemIcon>
-                            <InboxIcon/>
+                        <ListItemIcon >
+                            <item.icon/>
                         </ListItemIcon>
                         <ListItemText primary={item.title}/>
                         {open ? <ExpandLess/> : <ExpandMore/>}
